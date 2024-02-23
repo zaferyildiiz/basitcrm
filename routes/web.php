@@ -3,8 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Front\HomeController;
-
 use App\Http\Controllers\Panel\AuthController;
+use App\Http\Controllers\Admin\AuthController as Aauth;
+use App\Http\Controllers\Admin\HomeController as Ahome;
 
 
 
@@ -19,7 +20,7 @@ use App\Http\Controllers\Panel\AuthController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
- 
+
 
 
 Route::get('/',[HomeController::class,'index'])->name('home');
@@ -28,4 +29,17 @@ Route::get('/',[HomeController::class,'index'])->name('home');
 
 Route::prefix('panel')->group(function () {
     Route::get('/login',[AuthController::class,'login'])->name('panel.login');
+});
+
+
+Route::group(['prefix'=>'adminpanel','as'=>'admin.'], function(){
+    Route::get('login',[Aauth::class,'login'])->name('login');
+    Route::post('login_post',[Aauth::class,'login_post'])->name('login_post');
+    Route::get('logout',[Aauth::class,'logout'])->name('logout');
+});
+
+
+Route::group(['prefix' => 'adminpanel', 'as' => 'admin.', 'middleware' => 'auth'], function () {
+    Route::get('/',[Ahome::class,'index'])->name('home');
+
 });
