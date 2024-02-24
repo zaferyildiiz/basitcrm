@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AuthController as Aauth;
 use App\Http\Controllers\Admin\CompanyController as ACompany;
 use App\Http\Controllers\Admin\HomeController as Ahome;
 use App\Http\Controllers\Admin\UserController as AUser;
+use App\Http\Controllers\Admin\BlogController as ABlog;
 
 
 
@@ -55,4 +56,11 @@ Route::group(['prefix' => 'adminpanel', 'as' => 'admin.', 'middleware' => 'auth'
 
     //Kullanıcı Yönetimi
     Route::get('kullanicilari_listele',[AUser::class,'index'])->name('list_user');
+    Route::post('kullanici_ekle_post',[AUser::class,'add_user_post'])->name('add_user_post');
+    Route::put('kullanici_duzenle_post',[AUser::class,'update_user_post'])->name('update_user_post');
+    Route::get('kullanici_sil/{id}',[AUser::class,'delete_user'])->name('delete_user');
+
+    //Blog Yönetimi
+    Route::get('bloglari_listele',[ABlog::class,'index'])->name('list_blog');
+
 });

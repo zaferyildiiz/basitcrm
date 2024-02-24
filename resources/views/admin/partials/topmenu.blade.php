@@ -5,8 +5,8 @@
       </button>
       <h1 class="navbar-brand navbar-brand-autodark d-none-navbar-horizontal pe-0 pe-md-3">
         <a href=".">
-          <img src="{{env('APP_ASSET_URL')}}/static/logo.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
-        </a>
+            BasitCRM
+         </a>
       </h1>
       <div class="navbar-nav flex-row order-md-last">
         <div class="nav-item d-none d-md-flex me-3">
