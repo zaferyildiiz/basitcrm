@@ -7,6 +7,7 @@ use App\Http\Controllers\Panel\AuthController;
 use App\Http\Controllers\Admin\AuthController as Aauth;
 use App\Http\Controllers\Admin\CompanyController as ACompany;
 use App\Http\Controllers\Admin\HomeController as Ahome;
+use App\Http\Controllers\Admin\UserController as AUser;
 
 
 
@@ -43,9 +44,15 @@ Route::group(['prefix'=>'adminpanel','as'=>'admin.'], function(){
 Route::group(['prefix' => 'adminpanel', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::get('/',[Ahome::class,'index'])->name('home');
 
+
+
+    //Firma Yönetimi
     Route::get('firmalari_listele',[ACompany::class,'index'])->name('list_company');
     Route::post('firma_ekle_post',[ACompany::class,'add_company_post'])->name('add_company_post');
     Route::put('firma_duzenle_post',[ACompany::class,'update_company_post'])->name('update_company_post');
     Route::get('firma_sil/{id}',[ACompany::class,'delete_company'])->name('delete_company');
 
+
+    //Kullanıcı Yönetimi
+    Route::get('kullanicilari_listele',[AUser::class,'index'])->name('list_user');
 });
