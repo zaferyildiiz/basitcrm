@@ -62,5 +62,6 @@ Route::group(['prefix' => 'adminpanel', 'as' => 'admin.', 'middleware' => 'auth'
 
     //Blog Yönetimi
     Route::get('bloglari_listele',[ABlog::class,'index'])->name('list_blog');
-
+    Route::post('blog_ekle_post',[ABlog::class,'add_blog_post'])->name('add_blog_post');
+    Route::post('blog_duzenle_post',[ABlog::class,'update_blog_post'])->name('update_blog_post');
 });

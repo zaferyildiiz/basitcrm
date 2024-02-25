@@ -12,8 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('blogs', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('blog_id');
+            $table->string('title');
+            $table->text('content');
+            $table->string('slug')->unique();
+            $table->integer('user_id');
+            $table->string('blog_image_url');
+            $table->integer('hit');
+            $table->datetime("created_at");
+            $table->datetime("updated_at");
+            $table->datetime("deleted_at")->nullable();
+            $table->integer("created_by");
+            $table->integer("updated_by");
+            $table->integer("deleted_by")->nullable();
         });
     }
 
