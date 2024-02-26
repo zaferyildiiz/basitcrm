@@ -4,14 +4,16 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\Panel\AuthController;
+use App\Http\Controllers\Front\ContactFormController;
+use App\Http\Controllers\Front\BlogController;
+
+
 use App\Http\Controllers\Admin\AuthController as Aauth;
 use App\Http\Controllers\Admin\CompanyController as ACompany;
 use App\Http\Controllers\Admin\HomeController as Ahome;
 use App\Http\Controllers\Admin\UserController as AUser;
 use App\Http\Controllers\Admin\BlogController as ABlog;
-
-
-use App\Http\Controllers\Front\BlogController;
+use App\Http\Controllers\Admin\ContactFormController as AContact;
 
 
 
@@ -31,7 +33,7 @@ use App\Http\Controllers\Front\BlogController;
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('blog/{slug}',[BlogController::class,'blog_detail'])->name('front.blog_detail');
-
+Route::post('mesaj_gonder',[ContactFormController::class,'index'])->name('front.contact_form_post');
 
 
 Route::prefix('panel')->group(function () {
@@ -69,4 +71,8 @@ Route::group(['prefix' => 'adminpanel', 'as' => 'admin.', 'middleware' => 'auth'
     Route::post('blog_ekle_post',[ABlog::class,'add_blog_post'])->name('add_blog_post');
     Route::put('blog_duzenle_post',[ABlog::class,'update_blog_post'])->name('update_blog_post');
     Route::get('delete_blog/{id}',[ABlog::class,'delete_blog'])->name('delete_blog');
+
+    //İletişim Formundan Gelen Data Yönetimi
+    Route::get('/iletisimformu',[AContact::class,'index'])->name('list_contactform');
+
 });

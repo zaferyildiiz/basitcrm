@@ -50,6 +50,8 @@
 
         <!-- Template Javascript -->
         <script src="{{ asset('tema/js/main.js')}}"></script>
+
+
     </body>
 
 </html>

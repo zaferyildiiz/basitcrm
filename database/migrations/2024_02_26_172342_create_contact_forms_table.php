@@ -12,8 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('contact_forms', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements("form_id");
+            $table->string('name');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('subject');
+            $table->string('content');
+            $table->string('status');
+            $table->datetime('created_at');
+
         });
     }
 

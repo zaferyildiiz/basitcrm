@@ -49,21 +49,28 @@
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay=".5s">
                     <div class="p-5 rounded contact-form">
+                        <form action="{{ route('front.contact_form_post') }}" method="post">
+                            @csrf
                         <div class="mb-4">
-                            <input type="text" class="form-control border-0 py-3" placeholder="Adınız">
+                            <input type="text" name="name" class="form-control border-0 py-3" placeholder="Adınız ve Soyadınız" required>
                         </div>
                         <div class="mb-4">
-                            <input type="email" class="form-control border-0 py-3" placeholder="E-Posta Adresiniz">
+                            <input type="email" name="email" class="form-control border-0 py-3" placeholder="E-Posta Adresiniz" required>
+                        </div>
+
+                        <div class="mb-4">
+                            <input type="text" name="phone" class="form-control border-0 py-3" placeholder="Telefon Numaranız" required>
                         </div>
                         <div class="mb-4">
-                            <input type="text" class="form-control border-0 py-3" placeholder="Proje">
+                            <input type="text" name="subject" class="form-control border-0 py-3" placeholder="Konu" required>
                         </div>
                         <div class="mb-4">
-                            <textarea class="w-100 form-control border-0 py-3" rows="6" cols="10" placeholder="Mesajınız"></textarea>
+                            <textarea name="content" class="w-100 form-control border-0 py-3" rows="6" cols="10" placeholder="Mesajınız" required></textarea>
                         </div>
                         <div class="text-start">
-                            <button class="btn bg-primary text-white py-3 px-5" type="button">Mesaj Gönder</button>
+                            <button class="btn bg-primary text-white py-3 px-5" type="submit">Mesaj Gönder</button>
                         </div>
+                    </form>
                     </div>
                 </div>
             </div>

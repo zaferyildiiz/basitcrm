@@ -61,6 +61,13 @@
 
         <!-- Template Javascript -->
         <script src="tema/js/main.js"></script>
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        @if (Session::has('success'))
+            <script>
+                swal("Başarılı","{{ Session::get('success') }}", "success");
+
+            </script>
+        @endif
     </body>
 
 </html>
