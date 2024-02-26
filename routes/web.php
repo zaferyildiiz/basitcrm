@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\UserController as AUser;
 use App\Http\Controllers\Admin\BlogController as ABlog;
 
 
+use App\Http\Controllers\Front\BlogController;
+
+
 
 
 /*
@@ -27,6 +30,7 @@ use App\Http\Controllers\Admin\BlogController as ABlog;
 
 
 Route::get('/',[HomeController::class,'index'])->name('home');
+Route::get('blog/{slug}',[BlogController::class,'blog_detail'])->name('front.blog_detail');
 
 
 

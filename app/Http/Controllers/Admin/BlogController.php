@@ -55,7 +55,6 @@ class BlogController extends Controller
 
     public function update_blog_post(Request $request)
     {
-
         $blog = Blog::where('blog_id',$request->id)->first();
         if ($request->file('blog_image')) {
             $imagePath = $request->file('blog_image')->store('blog_images', 'public');

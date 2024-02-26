@@ -30,7 +30,7 @@
                     <!-- İçerik -->
                     <div class="form-group">
                         <label for="content">İçerik:</label>
-                        <textarea class="form-control" id="editor" name="content" rows="5" required></textarea>
+                        <textarea class="form-control tinymce-mytextarea" name="content" rows="5" required></textarea>
                     </div>
                     <!-- Slug -->
                     <div class="form-group">
@@ -83,7 +83,7 @@
                             $path = Storage::disk('public')->path($value->blog_image_url);
 
                         @endphp
-                        <img src="{{ asset('storage/blog_images/kcfukn005kV4RZnBFi7j1yMUxttZzDBteeZE0et5.jpg') }}" with="50" height="50">
+                        <img src="{{ asset('storage/')."/".$value->blog_image_url }}" with="50" height="50">
                     </td>
                     <td>
                         <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-simple{{ $value->blog_id }}">Düzenle</a>
@@ -102,6 +102,8 @@
                             <form action="{{ route('admin.update_blog_post') }}" method="POST">
                                 @csrf
                                 @method('PUT')
+
+
                                 <input type="hidden" name="id" value="{{ $value->blog_id }}">
                                 <div class="form-group">
                                     <label for="title">Başlık:</label>
@@ -111,16 +113,11 @@
                                 <div class="form-group">
                                     <label for="content">İçerik:</label>
                                     <div class="form-group">
-                                        <label for="content">İçerik:</label>
-                                        <div class="editor-container">
-                                            <div class="ql-editor">
-                                                {!! $value->content !!}
-
-                                            </div>
-                                        </div>
+                                        <textarea name="content" class='editor-container form-control tinymce-mytextarea'  cols="30" rows="10">
+                                            {!! $value->content !!}
+                                        </textarea>
                                     </div>
                                 </div>
-                                <input type="hidden" name="content" value="{{$value->content }}">
                                 <div class="form-group">
                                     <label for="slug">Slug:</label>
                                     <input type="text" id="slug" name="slug" class="form-control" value="{{ $value->slug }}">
@@ -156,7 +153,35 @@
         });
 
 
+
 </script>
 @endif
+<script>
+    // @formatter:off
+    document.addEventListener("DOMContentLoaded", function () {
+      let options = {
+        selector: '.tinymce-mytextarea',
+        height: 300,
+        menubar: false,
+        statusbar: false,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | ' +
+          'bold italic backcolor | alignleft aligncenter ' +
+          'alignright alignjustify | bullist numlist outdent indent | ' +
+          'removeformat',
+        content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }'
+      }
+      if (localStorage.getItem("tablerTheme") === 'dark') {
+        options.skin = 'oxide-dark';
+        options.content_css = 'dark';
+      }
+      tinyMCE.init(options);
+    })
+    // @formatter:on
+</script>
 
 @endsection

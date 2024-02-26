@@ -11,7 +11,7 @@
     <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
     <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
     <link href="{{env('APP_ASSET_URL')}}/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
-    <link href="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.snow.css" rel="stylesheet" />
+
 
     <style>
       @import url('https://rsms.me/inter/inter.css');
@@ -93,24 +93,12 @@
     </div>
   </div>
 
+  <script src="{{ asset('tabler/dist/libs/tinymce/tinymce.min.js') }} " defer></script>
+
+
     @include("admin.partials.script")
 
-    <!-- Include the Quill library -->
-    <script src="https://cdn.jsdelivr.net/npm/quill@2.0.0-rc.2/dist/quill.js"></script>
 
-    <!-- Initialize Quill editor -->
-    <script>
-    const quill = new Quill('#editor', {
-        theme: 'snow'
-    });
 
-    var editors = document.querySelectorAll('.editor-container');
-
-    editors.forEach(function(editor) {
-        var quill = new Quill(editor, {
-            theme: 'snow'
-        });
-    });
-    </script>
   </body>
 </html>
