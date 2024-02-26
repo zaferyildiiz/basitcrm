@@ -52,4 +52,39 @@ class BlogController extends Controller
         return redirect()->route('admin.list_blog')->with('success', 'Blog yazısı başarıyla oluşturuldu.');
 
     }
+
+    public function update_blog_post(Request $request)
+    {
+
+        $blog = Blog::where('blog_id',$request->id)->first();
+        if ($request->file('blog_image')) {
+            $imagePath = $request->file('blog_image')->store('blog_images', 'public');
+        }else{
+            $imagePath =  $blog->blog_image_url;
+        }
+
+
+        $blog = Blog::findOrFail($request->id);
+        $blog->title = $request->input('title');
+        $blog->content = $request->input('content');
+        $blog->slug = $request->input('slug');
+        $blog->blog_image_url = $imagePath;
+        $blog->save();
+
+        return redirect()->route('admin.list_blog')->with('success', 'Blog gönderisi başarıyla güncellendi.');
+
+    }
+
+    public function delete_blog($id)
+    {
+        $delete = Blog::where('blog_id',$id)->update([
+            'deleted_at'=>date('Y-m-d H:i:s'),
+            'deleted_by'=>Auth::id()
+        ]);
+
+        if ($delete) {
+            return redirect()->route('admin.list_blog')->with('success', 'Blog gönderisi başarıyla güncellendi.');
+
+        }
+    }
 }

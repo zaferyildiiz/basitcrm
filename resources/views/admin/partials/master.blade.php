@@ -103,6 +103,14 @@
     const quill = new Quill('#editor', {
         theme: 'snow'
     });
+
+    var editors = document.querySelectorAll('.editor-container');
+
+    editors.forEach(function(editor) {
+        var quill = new Quill(editor, {
+            theme: 'snow'
+        });
+    });
     </script>
   </body>
 </html>

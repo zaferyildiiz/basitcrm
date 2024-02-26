@@ -76,7 +76,7 @@
             @foreach ($blogs as $key=>$value)
                 <tr>
                     <td>{{ $value->title }}</td>
-                    <td>{{ $value->content }}</td>
+                    <td>{{ mb_substr($value->content,0,150) }}...</td>
                     <td>{{ $value->slug }}</td>
                     <td>
                         @php
@@ -86,10 +86,58 @@
                         <img src="{{ asset('storage/blog_images/kcfukn005kV4RZnBFi7j1yMUxttZzDBteeZE0et5.jpg') }}" with="50" height="50">
                     </td>
                     <td>
-                        <a href="" class="btn btn-sm btn-primary">Düzenle</a>
-                        <a href="" class="btn btn-sm btn-danger">Sil</a>
+                        <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal-simple{{ $value->blog_id }}">Düzenle</a>
+                        <a href="{{ route('admin.delete_blog',['id'=>$value->blog_id]) }}" class="btn btn-sm btn-danger">Sil</a>
                     </td>
                 </tr>
+
+                <div class="modal modal-blur fade" id="modal-simple{{ $value->blog_id }}" tabindex="-1" role="dialog" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title">Blog Ekle</h5>
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form action="{{ route('admin.update_blog_post') }}" method="POST">
+                                @csrf
+                                @method('PUT')
+                                <input type="hidden" name="id" value="{{ $value->blog_id }}">
+                                <div class="form-group">
+                                    <label for="title">Başlık:</label>
+                                    <input type="text" class="form-control" id="title" name="title" value="{{ $value->title }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="content">İçerik:</label>
+                                    <div class="form-group">
+                                        <label for="content">İçerik:</label>
+                                        <div class="editor-container">
+                                            <div class="ql-editor">
+                                                {!! $value->content !!}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <input type="hidden" name="content" value="{{$value->content }}">
+                                <div class="form-group">
+                                    <label for="slug">Slug:</label>
+                                    <input type="text" id="slug" name="slug" class="form-control" value="{{ $value->slug }}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="blog_image_url">Görsel URL:</label>
+                                    <input type="file" class="form-control" name="blog_image">
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-sm btn-success ml-1">Güncelle</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    </div>
+                  </div>
             @endforeach
           </tbody>
         </table>
@@ -106,6 +154,8 @@
         type: "success",
         confirmButtonText: "Tamam"
         });
+
+
 </script>
 @endif
 
