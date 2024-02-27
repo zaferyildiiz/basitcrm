@@ -17,8 +17,8 @@
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sayfalar</a>
                             <div class="dropdown-menu rounded">
                                 <a href="{{ route('front.all_blog') }}" class="dropdown-item">Blog</a>
-                                <a href="team.html" class="dropdown-item">Bizim Ekip</a>
-                                <a href="testimonial.html" class="dropdown-item">Müşteri Yorumları</a>
+                                <a href="{{ route('front.team') }}" class="dropdown-item">Bizim Ekip</a>
+                                {{-- <a href="testimonial.html" class="dropdown-item">Müşteri Yorumları</a> --}}
                             </div>
                         </div>
                         <a href="{{ route('front.iletisim') }}" class="nav-item nav-link">İletişim</a>

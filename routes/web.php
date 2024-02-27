@@ -7,6 +7,7 @@ use App\Http\Controllers\Panel\AuthController;
 use App\Http\Controllers\Front\ContactFormController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ModuleController;
+use App\Http\Controllers\Front\TeamController;
 
 
 use App\Http\Controllers\Admin\AuthController as Aauth;
@@ -37,6 +38,7 @@ Route::get('iletisim',[ContactFormController::class,'iletisim'])->name('front.il
 Route::get('hakkimizda',[AboutController::class,'index'])->name('front.about');
 Route::get('modullerimiz',[ModuleController::class,'index'])->name('front.modules');
 Route::get('tum_bloglar',[BlogController::class,'all_blog'])->name('front.all_blog');
+Route::get('bizim_ekip',[TeamController::class,'index'])->name('front.team');
 
 
 Route::prefix('panel')->group(function () {
