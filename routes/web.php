@@ -2,14 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+//Front Controller
 use App\Http\Controllers\Front\HomeController;
-use App\Http\Controllers\Panel\AuthController;
 use App\Http\Controllers\Front\ContactFormController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ModuleController;
 use App\Http\Controllers\Front\TeamController;
 
 
+
+//Admin Controller
 use App\Http\Controllers\Admin\AuthController as Aauth;
 use App\Http\Controllers\Admin\CompanyController as ACompany;
 use App\Http\Controllers\Admin\HomeController as Ahome;
@@ -17,6 +20,10 @@ use App\Http\Controllers\Admin\UserController as AUser;
 use App\Http\Controllers\Admin\BlogController as ABlog;
 use App\Http\Controllers\Admin\ContactFormController as AContact;
 use App\Http\Controllers\Front\AboutController;
+
+// Panel Controller
+use App\Http\Controllers\Panel\AuthController;
+use App\Http\Controllers\Panel\HomeController as HHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,8 +48,19 @@ Route::get('tum_bloglar',[BlogController::class,'all_blog'])->name('front.all_bl
 Route::get('bizim_ekip',[TeamController::class,'index'])->name('front.team');
 
 
-Route::prefix('panel')->group(function () {
+
+
+
+
+Route::group(['prefix'=>'panel','as'=>'panel.'],function () {
     Route::get('/login',[AuthController::class,'login'])->name('panel.login');
+    Route::post('login_post',[AuthController::class,'login_post'])->name('login_post');
+});
+
+
+Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function () {
+
+    Route::get('anasayfa',[HHomeController::class,'index'])->name('home');
 });
 
 
