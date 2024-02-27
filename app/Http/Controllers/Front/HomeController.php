@@ -10,7 +10,7 @@ use App\Models\Blog;
 class HomeController extends Controller
 {
     public function index() {
-        $blogs = Blog::where('deleted_at',null)->get();
+        $blogs = Blog::where('deleted_at',null)->limit(3)->get();
         return view('front.home',compact('blogs'));
     }
 }

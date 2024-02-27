@@ -26,4 +26,10 @@ class ContactFormController extends Controller
             return redirect()->route('home') ;
         }
     }
+
+
+    public function iletisim()
+    {
+        return view('front.contact.contact');
+    }
 }

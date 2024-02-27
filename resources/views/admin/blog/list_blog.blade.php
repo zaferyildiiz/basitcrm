@@ -30,7 +30,7 @@
                     <!-- İçerik -->
                     <div class="form-group">
                         <label for="content">İçerik:</label>
-                        <textarea class="form-control tinymce-mytextarea" name="content" rows="5" required></textarea>
+                        <textarea class="form-control tinymce-mytextareaa" id="test" name="content" rows="5"></textarea>
                     </div>
                     <!-- Slug -->
                     <div class="form-group">
@@ -182,6 +182,30 @@
       tinyMCE.init(options);
     })
     // @formatter:on
+
+    document.addEventListener("DOMContentLoaded", function () {
+      let options = {
+        selector: '.tinymce-mytextareaa',
+        height: 300,
+        menubar: false,
+        statusbar: false,
+        plugins: [
+          'advlist autolink lists link image charmap print preview anchor',
+          'searchreplace visualblocks code fullscreen',
+          'insertdatetime media table paste code help wordcount'
+        ],
+        toolbar: 'undo redo | formatselect | ' +
+          'bold italic backcolor | alignleft aligncenter ' +
+          'alignright alignjustify | bullist numlist outdent indent | ' +
+          'removeformat',
+        content_style: 'body { font-family: -apple-system, BlinkMacSystemFont, San Francisco, Segoe UI, Roboto, Helvetica Neue, sans-serif; font-size: 14px; -webkit-font-smoothing: antialiased; }'
+      }
+      if (localStorage.getItem("tablerTheme") === 'dark') {
+        options.skin = 'oxide-dark';
+        options.content_css = 'dark';
+      }
+      tinyMCE.init(options);
+    })
 </script>
 
 @endsection

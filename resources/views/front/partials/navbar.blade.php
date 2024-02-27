@@ -2,7 +2,7 @@
     <div class="container-fluid bg-primary">
         <div class="container">
             <nav class="navbar navbar-dark navbar-expand-lg py-0">
-                <a href="index.html" class="navbar-brand">
+                <a href="{{ route('home') }}" class="navbar-brand">
                     <h1 class="text-white fw-bold d-block">Basit<span class="text-secondary">CRM</span> </h1>
                 </a>
                 <button type="button" class="navbar-toggler me-0" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -10,18 +10,18 @@
                 </button>
                 <div class="collapse navbar-collapse bg-transparent" id="navbarCollapse">
                     <div class="navbar-nav ms-auto mx-xl-auto p-0">
-                        <a href="index.html" class="nav-item nav-link active text-secondary">Anasayfa</a>
-                        <a href="about.html" class="nav-item nav-link">Hakkımızda</a> 
-                        <a href="project.html" class="nav-item nav-link">Projeler</a>
+                        <a href="{{ route('home') }}" class="nav-item nav-link active text-secondary">Anasayfa</a>
+                        <a href="{{ route('front.about') }}" class="nav-item nav-link">Hakkımızda</a>
+                        <a href="{{ route('front.modules') }}" class="nav-item nav-link">Modüllerimiz</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Sayfalar</a>
                             <div class="dropdown-menu rounded">
-                                <a href="blog.html" class="dropdown-item">Blog</a>
+                                <a href="{{ route('front.all_blog') }}" class="dropdown-item">Blog</a>
                                 <a href="team.html" class="dropdown-item">Bizim Ekip</a>
-                                <a href="testimonial.html" class="dropdown-item">Müşteri Yorumları</a> 
+                                <a href="testimonial.html" class="dropdown-item">Müşteri Yorumları</a>
                             </div>
                         </div>
-                        <a href="contact.html" class="nav-item nav-link">İletişim</a>
+                        <a href="{{ route('front.iletisim') }}" class="nav-item nav-link">İletişim</a>
                     </div>
                 </div>
                 <div class="d-none d-xl-flex flex-shirink-0">
