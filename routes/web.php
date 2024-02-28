@@ -24,6 +24,8 @@ use App\Http\Controllers\Front\AboutController;
 // Panel Controller
 use App\Http\Controllers\Panel\AuthController;
 use App\Http\Controllers\Panel\HomeController as HHomeController;
+use App\Http\Controllers\Panel\CustomerController;
+use App\Http\Controllers\Panel\ContactController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +63,17 @@ Route::group(['prefix'=>'panel','as'=>'panel.'],function () {
 Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function () {
 
     Route::get('anasayfa',[HHomeController::class,'index'])->name('home');
+
+    //Müşteri Yönetimi
+    Route::get('musterileri_listele',[CustomerController::class,'index'])->name('list_customer');
+    Route::post('musteri_ekle_post',[CustomerController::class,'add_customer_post'])->name('add_customer_post');
+    Route::put('musteri_duzenle_post',[CustomerController::class,'update_customer_post'])->name('update_customer_post');
+
+    //Kontak Yönetimi
+    Route::get('kontaklari_listele',[ContactController::class,'index'])->name('list_contact');
+    Route::post('kontak_ekle_post',[ContactController::class,'add_contact_post'])->name('add_contact_post');
+    Route::put('kontak_duzenle_post',[ContactController::class,'update_contact_post'])->name('update_contact_post');
+    Route::get('delete_contact/{id}',[ContactController::class,'delete_contact'])->name('delete_contact');
 });
 
 
@@ -73,8 +86,6 @@ Route::group(['prefix'=>'adminpanel','as'=>'admin.'], function(){
 
 Route::group(['prefix' => 'adminpanel', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::get('/',[Ahome::class,'index'])->name('home');
-
-
 
     //Firma Yönetimi
     Route::get('firmalari_listele',[ACompany::class,'index'])->name('list_company');
