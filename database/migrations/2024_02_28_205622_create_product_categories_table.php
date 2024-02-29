@@ -11,12 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('product_brands', function (Blueprint $table) {
-            $table->bigIncrements("product_brand_id");
-            $table->string('brand_name');
-            $table->string('brand_logo')->nullable();
-            $table->string('brand_description')->nullable();
-            $table->integer('category_id');
+        Schema::create('product_categories', function (Blueprint $table) {
+            $table->bigIncrements("product_category_id");
+            $table->string('category_name');
+            $table->text('category_description')->nullable();
+            $table->integer('parent_id')->nullable();
+            $table->integer('company_id');
+            $table->string('slug')->unique();
             $table->datetime("created_at");
             $table->datetime("updated_at");
             $table->datetime("deleted_at")->nullable();
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('product_brands');
+        Schema::dropIfExists('product_categories');
     }
 };

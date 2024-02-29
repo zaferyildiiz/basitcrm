@@ -26,6 +26,8 @@ use App\Http\Controllers\Panel\AuthController;
 use App\Http\Controllers\Panel\HomeController as HHomeController;
 use App\Http\Controllers\Panel\CustomerController;
 use App\Http\Controllers\Panel\ContactController;
+use App\Http\Controllers\Panel\ProductCategoryController;
+use App\Models\ProductCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -74,6 +76,13 @@ Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function
     Route::post('kontak_ekle_post',[ContactController::class,'add_contact_post'])->name('add_contact_post');
     Route::put('kontak_duzenle_post',[ContactController::class,'update_contact_post'])->name('update_contact_post');
     Route::get('delete_contact/{id}',[ContactController::class,'delete_contact'])->name('delete_contact');
+
+
+    //Ürün Kategori Yönetimi
+    Route::get('urun_kategori_listele',[ProductCategoryController::class,'index'])->name('list_product_category');
+    Route::post('urun_kategorisi_ekle',[ProductCategoryController::class,'add_product_category_post'])->name('add_product_category_post');
+
+
 });
 
 
