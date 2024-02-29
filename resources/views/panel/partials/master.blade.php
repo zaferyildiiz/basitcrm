@@ -7,10 +7,10 @@
     <title>BasitCRM | @yield("title")</title>
     <!-- CSS files -->
     <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
-    <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
-    <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
-    <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
-    <link href="{{env('APP_ASSET_URL')}}/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{env('APP_ASSET_URL')}}/tabler/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{env('APP_ASSET_URL')}}/tabler/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{env('APP_ASSET_URL')}}/tabler/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{env('APP_ASSET_URL')}}/tabler/dist/css/demo.min.css?1684106062" rel="stylesheet"/>
 
 
     <style>
@@ -96,7 +96,7 @@
   <script src="{{ asset('tabler/dist/libs/tinymce/tinymce.min.js') }} " defer></script>
 
 
-    @include("panel.partials.script")
+  @include("panel.partials.script")
 
 
 

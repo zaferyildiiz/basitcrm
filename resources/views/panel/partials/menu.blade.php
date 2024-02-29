@@ -49,7 +49,7 @@
                     </span>
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{ route('panel.list_customer') }}"   rel="noopener">
+                    <a class="dropdown-item" href="{{ route('panel.list_product') }}"   rel="noopener">
                         Ürünler
                     </a>
                     <a class="dropdown-item" href="{{ route('panel.list_product_category') }}"   rel="noopener">

@@ -28,6 +28,7 @@ use App\Http\Controllers\Panel\CustomerController;
 use App\Http\Controllers\Panel\ContactController;
 use App\Http\Controllers\Panel\ProductCategoryController;
 use App\Http\Controllers\Panel\ProductBrandController;
+use App\Http\Controllers\Panel\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -88,6 +89,12 @@ Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function
     //Ürün Marka Yönetimi
     Route::get('urun_markalari_listele',[ProductBrandController::class,'index'])->name('list_product_brand');
     Route::post('urun_marka_ekle',[ProductBrandController::class,'add_product_brand_post'])->name('add_product_brand_post');
+    Route::put('urun_marka_duzenle_post',[ProductBrandController::class,'update_product_brand_post'])->name('update_product_brand_post');
+    Route::get('urun_marka_sil/{id}',[ProductBrandController::class,'delete_product_brand'])->name('delete_product_brand');
+
+
+    //Ürün Yönetimi
+    Route::get('/urunleri_listele',[ProductController::class,'index'])->name('list_product');
 
 });
 
