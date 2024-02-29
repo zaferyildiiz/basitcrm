@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('brand_logo')->nullable();
             $table->string('brand_description')->nullable();
             $table->integer('category_id');
+            $table->integer('company_id');
             $table->datetime("created_at");
             $table->datetime("updated_at");
             $table->datetime("deleted_at")->nullable();

@@ -56,7 +56,7 @@
                        Kategoriler
                     </a>
 
-                    <a class="dropdown-item" href="{{ route('panel.list_contact') }}"   rel="noopener">
+                    <a class="dropdown-item" href="{{ route('panel.list_product_brand') }}"   rel="noopener">
                         Markalar
                      </a>
 

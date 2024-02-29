@@ -41,4 +41,45 @@ class ProductCategoryController extends Controller
         return redirect()->back()->with('success', 'Kategori başarıyla eklendi.');
 
     }
+
+
+    public function update_product_category_post(REquest $request)
+    {
+        // Formdan gelen verileri doğrulama
+        $validatedData = $request->validate([
+            'category_name' => 'required|string|max:255',
+            'category_description' => 'nullable|string',
+        ]);
+
+        // Formdan gelen verileri kullanarak yeni bir kategori oluşturma
+        $category = ProductCategory::findOrFail($request->id);
+        $category->category_name = $request->category_name;
+        $category->category_description = $request->category_description;
+        $category->parent_id = $request->parent_id ?? null;
+        $category->slug = Str::slug($request->category_name,"-");
+        $category->created_at = date('Y-m-d H:i:s');
+        $category->created_by= Auth::id();
+        $category->updated_at= date("Y-m-d H:i:s");
+        $category->updated_by= Auth::id();
+        $category->company_id = Auth::user()->company_id;
+
+        $category->save();
+
+        // Başarılı olursa, kullanıcıya mesaj gönderme ve yönlendirme
+        return redirect()->back()->with('success', 'Kategori başarıyla eklendi.');
+    }
+
+
+    public function delete_product_category($id)
+    {
+        $delete = ProductCategory::where('product_category_id',$id)->where('company_id',Auth::user()->company_id)
+        ->update([
+            'deleted_at'=>date('Y-m-d H:i:s'),
+            'deleted_by'=>Auth::id()
+        ]);
+
+        if ($delete) {
+            return redirect()->back()->with('success', 'Kategori başarıyla silindi.');
+        }
+    }
 }

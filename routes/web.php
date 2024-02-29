@@ -27,7 +27,7 @@ use App\Http\Controllers\Panel\HomeController as HHomeController;
 use App\Http\Controllers\Panel\CustomerController;
 use App\Http\Controllers\Panel\ContactController;
 use App\Http\Controllers\Panel\ProductCategoryController;
-use App\Models\ProductCategory;
+use App\Http\Controllers\Panel\ProductBrandController;
 
 /*
 |--------------------------------------------------------------------------
@@ -80,8 +80,14 @@ Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function
 
     //Ürün Kategori Yönetimi
     Route::get('urun_kategori_listele',[ProductCategoryController::class,'index'])->name('list_product_category');
-    Route::post('urun_kategorisi_ekle',[ProductCategoryController::class,'add_product_category_post'])->name('add_product_category_post');
+    Route::post('urun_kategorisi_ekle_post',[ProductCategoryController::class,'add_product_category_post'])->name('add_product_category_post');
+    Route::put('urun_kategori_duzenle_post',[ProductCategoryController::class,'update_product_category_post'])->name('update_product_category_post');
+    Route::get('urun_kategorisi_sil/{id}',[ProductCategoryController::class,'delete_product_category'])->name('delete_product_category');
 
+
+    //Ürün Marka Yönetimi
+    Route::get('urun_markalari_listele',[ProductBrandController::class,'index'])->name('list_product_brand');
+    Route::post('urun_marka_ekle',[ProductBrandController::class,'add_product_brand_post'])->name('add_product_brand_post');
 
 });
 
