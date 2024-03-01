@@ -14,11 +14,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>BasitCRM | Giriş</title>
     <!-- CSS files -->
-    <link href="{{env('APP_ASSET_URL')}}/basitcrm/public/tabler/dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
-    <link href="{{env('APP_ASSET_URL')}}/basitcrm/public/tabler/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
-    <link href="{{env('APP_ASSET_URL')}}/basitcrm/public/tabler/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
-    <link href="{{env('APP_ASSET_URL')}}/basitcrm/public/tabler/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
-    <link href="{{env('APP_ASSET_URL')}}/basitcrm/public/tabler/css/demo.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler-flags.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler-payments.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{env('APP_ASSET_URL')}}/dist/css/tabler-vendors.min.css?1684106062" rel="stylesheet"/>
+    <link href="{{env('APP_ASSET_URL')}}/css/demo.min.css?1684106062" rel="stylesheet"/>
     <style>
       @import url('https://rsms.me/inter/inter.css');
       :root {
@@ -30,7 +30,7 @@
     </style>
   </head>
   <body  class=" d-flex flex-column">
-    <script src="{{env('APP_ASSET_URL')}}/basitcrm/public/tabler/dist/js/demo-theme.min.js?1684106062"></script>
+    <script src="{{env('APP_ASSET_URL')}}/dist/js/demo-theme.min.js?1684106062"></script>
     <div class="page page-center">
       <div class="container container-tight py-4">
         <div class="text-center mb-4" style="font-weight: bold;font-size:25px">

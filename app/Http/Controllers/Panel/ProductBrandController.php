@@ -96,7 +96,6 @@ class ProductBrandController extends Controller
 
         if ($delete) {
             return redirect()->route('panel.list_product_brand')->with('success', 'Marka başarıyla silindi.');
-
         }
     }
 }

@@ -31,7 +31,7 @@
     </style>
   </head>
   <body >
-    <script src="{{env('APP_ASSET_URL')}}/dist/js/demo-theme.min.js?1684106062"></script>
+    <script src="{{env('APP_ASSET_URL')}}dist/js/demo-theme.min.js?1684106062"></script>
     <div class="page">
       <!-- Navbar -->
       @include("panel.partials.topmenu")

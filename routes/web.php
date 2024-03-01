@@ -95,7 +95,7 @@ Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function
 
     //Ürün Yönetimi
     Route::get('/urunleri_listele',[ProductController::class,'index'])->name('list_product');
-
+    Route::post('urun_ekle_post',[ProductController::class,'add_product_post'])->name('add_product_post');
 });
 
 

@@ -11,4 +11,9 @@ class ProductController extends Controller
     {
         return view('panel.product.product.list_product');
     }
+
+    public function add_product_post(Request $request)
+    {
+        print_r($request->all());
+    }
 }
