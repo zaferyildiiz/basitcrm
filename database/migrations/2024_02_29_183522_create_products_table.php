@@ -21,12 +21,12 @@ return new class extends Migration
             $table->decimal('buying_price',10,2);
             $table->text('description');
             $table->string('product_code');
+            $table->integer('company_id');
             $table->integer('stock_quantity');
             $table->string('stock_type');
             $table->smallInteger('stock_alert_level');
-            $table->integer('minimum_stock_quantity');
             $table->tinyInteger('status');
-            $table->string('image_json');
+            $table->string('image_json')->nullable();
             $table->tinyInteger('is_installment');
             $table->integer('max_installment_number')->nullable();
             $table->datetime("created_at");

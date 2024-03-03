@@ -20,7 +20,7 @@ use App\Http\Controllers\Admin\UserController as AUser;
 use App\Http\Controllers\Admin\BlogController as ABlog;
 use App\Http\Controllers\Admin\ContactFormController as AContact;
 use App\Http\Controllers\Front\AboutController;
-
+use App\Http\Controllers\Panel\AjaxController;
 // Panel Controller
 use App\Http\Controllers\Panel\AuthController;
 use App\Http\Controllers\Panel\HomeController as HHomeController;
@@ -96,6 +96,12 @@ Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function
     //Ürün Yönetimi
     Route::get('/urunleri_listele',[ProductController::class,'index'])->name('list_product');
     Route::post('urun_ekle_post',[ProductController::class,'add_product_post'])->name('add_product_post');
+    Route::put('urun_duzenle_post',[ProductController::class,'update_product_post'])->name('update_product_post');
+    Route::get('update_product_image/{id}',[ProductController::class,'update_product_image'])->name('update_product_image');
+    Route::post('delete_product_image',[ProductController::class,'delete_product_image'])->name('delete_product_image');
+
+    //AJAX İstekleri
+    Route::post('marka_getir',[AjaxController::class,'get_brand'])->name('get_brand');
 });
 
 
