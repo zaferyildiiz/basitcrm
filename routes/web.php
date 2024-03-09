@@ -9,7 +9,8 @@ use App\Http\Controllers\Front\ContactFormController;
 use App\Http\Controllers\Front\BlogController;
 use App\Http\Controllers\Front\ModuleController;
 use App\Http\Controllers\Front\TeamController;
-
+use App\Http\Controllers\Front\AboutController;
+use App\Http\Controllers\Front\DemoRequestController;
 
 
 //Admin Controller
@@ -19,8 +20,8 @@ use App\Http\Controllers\Admin\HomeController as Ahome;
 use App\Http\Controllers\Admin\UserController as AUser;
 use App\Http\Controllers\Admin\BlogController as ABlog;
 use App\Http\Controllers\Admin\ContactFormController as AContact;
-use App\Http\Controllers\Front\AboutController;
-use App\Http\Controllers\Panel\AjaxController;
+
+
 // Panel Controller
 use App\Http\Controllers\Panel\AuthController;
 use App\Http\Controllers\Panel\HomeController as HHomeController;
@@ -29,6 +30,7 @@ use App\Http\Controllers\Panel\ContactController;
 use App\Http\Controllers\Panel\ProductCategoryController;
 use App\Http\Controllers\Panel\ProductBrandController;
 use App\Http\Controllers\Panel\ProductController;
+use App\Http\Controllers\Panel\AjaxController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,8 +53,8 @@ Route::get('hakkimizda',[AboutController::class,'index'])->name('front.about');
 Route::get('modullerimiz',[ModuleController::class,'index'])->name('front.modules');
 Route::get('tum_bloglar',[BlogController::class,'all_blog'])->name('front.all_blog');
 Route::get('bizim_ekip',[TeamController::class,'index'])->name('front.team');
-// Route::get('demo_talep_et',[])
-
+Route::get('demo_talep_et',[DemoRequestController::class,'index'])->name('front.demo_talep_et');
+Route::post('demo_talep_et_post',[DemoRequestController::class,'demo_talep_et_post'])->name('front.demo_talep_et_post');
 
 
 

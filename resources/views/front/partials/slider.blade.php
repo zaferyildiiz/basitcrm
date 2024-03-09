@@ -14,7 +14,7 @@
                             <h1 class="text-white display-1 mb-4 animated fadeInRight">Müşterilerinizi Takip Edin</h1>
                             <p class="mb-4 text-white fs-5 animated fadeInDown">Müşteri Hareketlerine Göre Aksiyon Alın.</p>
                             <a href="" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Daha Fazla</button></a>
-                            <a href="" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Demo Talep Et</button></a>
+                            <a href="{{ route('front.demo_talep_et') }}" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Demo Talep Et</button></a>
                         </div>
                     </div>
                 </div>
@@ -26,7 +26,7 @@
                             <h1 class="text-white display-1 mb-4 animated fadeInLeft">Satışları, Projeleri tek bir alandan yönetin!</h1>
                             <p class="mb-4 text-white fs-5 animated fadeInDown">Müşterilerle kontakt kurun. Ve BasitCRM ile bu süreci yönetin </p>
                             <a href="" class="me-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn1 animated fadeInLeft">Daha Fazla</button></a>
-                            <a href="" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Demo Talep Et</button></a>
+                            <a href="{{ route('front.demo_talep_et') }}" class="ms-2"><button type="button" class="px-4 py-sm-3 px-sm-5 btn btn-primary rounded-pill carousel-content-btn2 animated fadeInRight">Demo Talep Et</button></a>
                         </div>
                     </div>
                 </div>
