@@ -163,4 +163,30 @@ class ProductController extends Controller
          }
 
     }
+
+
+    public function add_update_product_image(Request $request)
+    {
+
+        $product = Product::where('product_id',$request->product_id)->where('company_id',Auth::user()->company_id)->first();
+        $images = json_decode($product->image_json,true);
+
+        foreach ($request->file('aksfileupload') as $image) {
+            $path = $image->store('public/products/' .Auth::user()->company_id."/". $product->product_id);
+
+            array_push($images,Storage::url($path));
+            }
+
+
+
+        $update = Product::where('product_id',$request->product_id)
+        ->update([
+            'image_json'=>json_encode($images)
+        ]);
+
+        if ($update) {
+            return redirect()->route('panel.list_product')->with('success', 'Ürün resmi güncellendi!');
+
+        }
+    }
 }

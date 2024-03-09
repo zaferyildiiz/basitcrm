@@ -51,7 +51,7 @@ Route::get('hakkimizda',[AboutController::class,'index'])->name('front.about');
 Route::get('modullerimiz',[ModuleController::class,'index'])->name('front.modules');
 Route::get('tum_bloglar',[BlogController::class,'all_blog'])->name('front.all_blog');
 Route::get('bizim_ekip',[TeamController::class,'index'])->name('front.team');
-
+// Route::get('demo_talep_et',[])
 
 
 
@@ -99,6 +99,8 @@ Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function
     Route::put('urun_duzenle_post',[ProductController::class,'update_product_post'])->name('update_product_post');
     Route::get('update_product_image/{id}',[ProductController::class,'update_product_image'])->name('update_product_image');
     Route::post('delete_product_image',[ProductController::class,'delete_product_image'])->name('delete_product_image');
+    Route::post('urun_resim_guncelle_post',[ProductController::class,'add_update_product_image'])->name('add_update_product_image');
+
 
     //AJAX İstekleri
     Route::post('marka_getir',[AjaxController::class,'get_brand'])->name('get_brand');
