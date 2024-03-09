@@ -11,6 +11,7 @@ use App\Models\ProductCategory;
 use Auth;
 use Session;
 use Illuminate\Support\Facades\Storage;
+use finfo;
 class ProductController extends Controller
 {
     public function index()
