@@ -150,8 +150,6 @@ class ProductController extends Controller
           } else {
              echo 'Unable to delete the given file';
           }
-
-
     }
 
 

@@ -55,11 +55,11 @@
                     <img class="card-img-top" src="{{ URL::to('/').$value }}" alt="" height="250px">
                     <div class="card-body text-center">
 
-                        <form action="{{ route('panel.delete_product_image') }}"  method="post">
-                            @csrf
-                            <input type="hidden" name="image_path" value="{{URL::to('/').$key }}">
-                            <button type="submit" class="btn btn-sm btn-danger">Resmi Sil</button>
-                        </form>
+                      <form action="{{ route('panel.delete_product_image') }}"  method="post">
+                          @csrf
+                          <input type="hidden" name="image_path" value="{{ public_path().$key }}">
+                          <button type="submit" class="btn btn-sm btn-danger">Resmi Sil</button>
+                      </form>
                      </div>
                   </div>
             </div>
