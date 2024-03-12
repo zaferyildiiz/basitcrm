@@ -52,7 +52,7 @@
             @foreach ($image_url as $key=>$value)
             <div class="col-md-4">
                 <div class="card">
-                    <img class="card-img-top" src="{{ URL::to('/').$value }}" alt="" height="250px">
+                    <img class="card-img-top" src="{{ public_path().$key }}" alt="" height="250px">
                     <div class="card-body text-center">
 
                       <form action="{{ route('panel.delete_product_image') }}"  method="post">
