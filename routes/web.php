@@ -42,8 +42,8 @@ use App\Http\Controllers\Panel\AjaxController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('product_image/{filename}', function ($filename) {
-    $path = public_path($filename);
+Route::get('product_image/{filename}/{company_id}/{product_id}', function ($filename,$company_id,$product_id) {
+    $path = public_path("product_uploads/".$company_id."/".$product_id."/".$filename);
 
     if (!file_exists($path)) {
         abort(404);
@@ -51,7 +51,6 @@ Route::get('product_image/{filename}', function ($filename) {
 
     return response()->download($path);
 })->name('get_product_image');
-
 
 Route::get('/',[HomeController::class,'index'])->name('home');
 Route::get('blog/{slug}',[BlogController::class,'blog_detail'])->name('front.blog_detail');

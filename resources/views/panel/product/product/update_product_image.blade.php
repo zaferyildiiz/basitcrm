@@ -49,10 +49,24 @@
 <div class="card">
     <div class="card-body">
         <div class="row">
+
+          <?php
+              $product_id = Request::segment(3);
+              $company_id = auth()->user()->company_id;
+          ?>
             @foreach ($image_url as $key=>$value)
+
+             <?php
+             // URL'yi '/' karakterlerine göre parçalayarak dizi oluştururuz
+            $parts = explode('/', $key);
+
+            // Son öğeyi (dosya adını) alırız
+            $filename = end($parts);
+
+            ?>
             <div class="col-md-4">
                 <div class="card">
-                      <img src="{{ route('get_product_image',['filename'=>$key]) }}" alt="ThinkPad X1 Nano">
+                    <img src="{{ route('get_product_image',['filename'=>$filename,'company_id'=>$company_id,'product_id'=>$product_id]) }}" alt="ThinkPad X1 Nano">
                     <div class="card-body text-center">
 
                       <form action="{{ route('panel.delete_product_image') }}"  method="post">
