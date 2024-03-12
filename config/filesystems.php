@@ -52,6 +52,12 @@ return [
             'throw' => true,
         ],
 
+        'product_public_upload'=>[
+            'driver' => 'local',
+            'root'   => public_path(),"/uploads",
+            'url' => public_path('/uploads'),
+        ],
+
         's3' => [
             'driver' => 's3',
             'key' => env('AWS_ACCESS_KEY_ID'),

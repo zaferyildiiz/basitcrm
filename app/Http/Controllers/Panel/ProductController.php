@@ -11,22 +11,18 @@ use App\Models\ProductCategory;
 use Auth;
 use Session;
 use Illuminate\Support\Facades\Storage;
-use finfo;
+use Illuminate\Support\Facades\File;
 class ProductController extends Controller
 {
     public function index()
     {
         $productCategory = ProductCategory::where('company_id',Auth::user()->company_id)->where('deleted_at',null)->get();
         $product = Product::with('brands')->where('company_id',Auth::user()->company_id)->where('deleted_at',null)->get();
-
-
-
         return view('panel.product.product.list_product',compact('productCategory','product'));
     }
 
     public function add_product_post(Request $request)
     {
-
        // Formdan gelen verileri al
        $data = $request->validate([
         'product_name' => 'required|string',
@@ -56,10 +52,13 @@ class ProductController extends Controller
 
     // Resimlerin yolu storage klasörüne kaydet
     $imagePaths = [];
+
     foreach ($request->file('aksfileupload') as $image) {
-        $path = $image->store('public/products/' .Auth::user()->company_id."/". $product->product_id);
-        $imagePaths[] = Storage::url($path);
-    }
+        $destinationPath = 'product_uploads';
+        $myimage = $image->getClientOriginalName();
+        $image->move(public_path($destinationPath.'/'.Auth::user()->company_id."/".$product->product_id), $myimage);
+        array_push($imagePaths, "/product_uploads".'/'.Auth::user()->company_id.'/'.$product->product_id.'/'.$myimage);
+        }
 
     // Resimlerin yollarını JSON formatına çevir
     $product->image_json = json_encode($imagePaths);
@@ -124,7 +123,7 @@ class ProductController extends Controller
 
         $image_url = [];
         foreach ($images as $key => $value) {
-            $image_url[$value] =env("APP_URL").$value;
+            $image_url[$value]=$value;
         }
 
 
@@ -134,34 +133,24 @@ class ProductController extends Controller
 
     public function delete_product_image(Request $request){
 
+
+
         $path = $request->image_path;
         $array =explode('/',$path);
-        $product_id = $array[4];
-        $product = Product::where('product_id',$product_id)->first();
-        $image_json = json_decode($product->image_json);
+
+        $path = $array[5]."/".$array[6]."/".$array[7]."/".$array[8];
 
 
 
-         // Belirtilen değerin dizideki indeksini bul
-        $index = array_search($path, $image_json);
+        if (file_exists(public_path($path))){
+         $filedeleted = unlink(public_path($path));
+          if ($filedeleted) {
+              return redirect()->route('panel.list_product')->with('success', 'Ürün resmi silindi!');
+          }
+          } else {
+             echo 'Unable to delete the given file';
+          }
 
-        // Eğer değer bulunduysa ve indeks varsa, diziden kaldır
-        if ($index !== false) {
-            unset($image_json[$index]);
-        }
-        $path = str_replace('/storage','',$path);
-         // Dosyanın varlığını kontrol et ve sil
-         Storage::disk('public')->delete($path);
-
-
-         $update = Product::where('product_id',$product_id)->update([
-            'image_json'=>json_encode($image_json)
-         ]);
-
-         if ($update) {
-            return redirect()->route('panel.list_product')->with('success', 'Ürün resmi silindi!');
-
-         }
 
     }
 
@@ -173,9 +162,10 @@ class ProductController extends Controller
         $images = json_decode($product->image_json,true);
 
         foreach ($request->file('aksfileupload') as $image) {
-            $path = $image->store('public/products/' .Auth::user()->company_id."/". $product->product_id);
-
-            array_push($images,Storage::url($path));
+            $destinationPath = 'product_uploads';
+            $myimage = $image->getClientOriginalName();
+            $image->move(public_path($destinationPath.'/'.Auth::user()->company_id."/".$product->product_id), $myimage);
+            array_push($images, "/product_uploads".'/'.Auth::user()->company_id.'/'.$product->product_id.'/'.$myimage);
             }
 
 
