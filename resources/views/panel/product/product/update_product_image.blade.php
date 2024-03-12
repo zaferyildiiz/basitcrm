@@ -51,7 +51,7 @@
         <div class="row">
             @foreach ($image_url as $key=>$value)
             <div class="col-md-4">
-                <div class="card"  >
+                <div class="card">
                     <img class="card-img-top" src="{{ $value }}" alt="" height="250px">
                     <div class="card-body text-center">
 

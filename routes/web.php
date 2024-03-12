@@ -60,13 +60,13 @@ Route::post('demo_talep_et_post',[DemoRequestController::class,'demo_talep_et_po
 
 
 Route::group(['prefix'=>'panel','as'=>'panel.'],function () {
-    Route::get('/login',[AuthController::class,'login'])->name('panel.login');
+    Route::get('/login',[AuthController::class,'login'])->name('login');
     Route::post('login_post',[AuthController::class,'login_post'])->name('login_post');
 });
 
 
-Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function () {
-
+Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'panelauth'],function () {
+    Route::get('/',[HHomeController::class,'index'])->name('anasayfa');
     Route::get('anasayfa',[HHomeController::class,'index'])->name('home');
 
     //Müşteri Yönetimi
@@ -110,13 +110,14 @@ Route::group(['prefix'=>'panel','as'=>'panel.', 'middleware' => 'auth'],function
 
 
 Route::group(['prefix'=>'adminpanel','as'=>'admin.'], function(){
+    Route::get('/',[Aauth::class,'login'])->name('panellll');
     Route::get('login',[Aauth::class,'login'])->name('login');
     Route::post('login_post',[Aauth::class,'login_post'])->name('login_post');
     Route::get('logout',[Aauth::class,'logout'])->name('logout');
 });
 
 
-Route::group(['prefix' => 'adminpanel', 'as' => 'admin.', 'middleware' => 'auth'], function () {
+Route::group(['prefix' => 'adminpanel', 'as' => 'admin.', 'middleware' => 'adminauth'], function () {
     Route::get('/',[Ahome::class,'index'])->name('home');
 
     //Firma Yönetimi
